@@ -33,9 +33,20 @@
 }
 </b>
 
-<h3>api/logup</h3>
-
+<h4>api/logup</h4>
 <p>Here we sand the following data: name, email, password and password_confirmation</p>
-
+<p>After sending the correct data to the API a message about the creation of a new user is send back to the client. On the other hand, if send missing data or wrong data a message will be returned about what went wrong.</p>
+<h4>api/login</h4>
+<p>Login is necessary to get your access token. Here you send your email address and your password.</p>
+<p>After getting your token you have to save it and use it on the body of your future requisitions. For instance if you use JavaScript fetch you may set up the headers like following:</p>
+<b>
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + your_token
+    } 
+</b>
+<h4>api/logout</h4>
+<p>Here you do not need to send anything. Just send an GET request and all your active tokens will be erased.</p>
 <p></p>
 <p></p>

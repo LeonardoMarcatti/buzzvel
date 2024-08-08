@@ -6,10 +6,11 @@ use App\Http\Requests\LogupRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class AuthController extends Controller
 {
-    public function logup(LogupRequest $request)
+    public function logup(LogupRequest $request) : object
     {
         $valid = $request->validated();
 
@@ -20,7 +21,7 @@ class AuthController extends Controller
         return \response()->json(['status' => true, 'message' => 'User created!']);
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request) : object
     {
         $valid = $request->validated();
 
@@ -31,5 +32,10 @@ class AuthController extends Controller
         }
 
             return \response()->json(['status' => false, 'message' => 'User not found']);
+    }
+
+    public function logout()
+    {
+        return Auth::user()->tokens()->delete();
     }
 }

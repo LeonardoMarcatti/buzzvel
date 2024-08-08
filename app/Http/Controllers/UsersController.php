@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function index() : object|array
+    public function all() : object|array
     {
         return User::all();
     }
