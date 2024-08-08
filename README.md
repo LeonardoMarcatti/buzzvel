@@ -22,7 +22,7 @@
 <h3>Intro</h3>
 <p>For some endpoints it is necessary to send some data in order to get what is wanted. It is the case of POST method endpoints like login, logup, getPlan, getAllPlans, getPFD, addParticipant and PUT method like updatePlan or updateparticipant</p>
 <p>The data that mus be send to API must follow JSON format key/value inside curly braces like in the example above</p>
-
+<b>
 {
     "key1" : "value1",
     "key2" : "value2",
@@ -31,13 +31,11 @@
     .
     .
 }
-
-
+</b>
 
 <h3>api/logup</h3>
 
 <p>Here we sand the following data: name, email, password and password_confirmation</p>
 
-<p></p>
 <p></p>
 <p></p>
