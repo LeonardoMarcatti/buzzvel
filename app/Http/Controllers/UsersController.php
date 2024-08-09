@@ -8,6 +8,8 @@ class UsersController extends Controller
 {
     public function all() : object|array
     {
-        return User::all();
+        $users =  User::all();
+
+        return \response()->json($users, 200);
     }
 }

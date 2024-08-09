@@ -19,8 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->date('date');
             $table->string('location');
-            $table->unsignedBigInteger('participants');
-            $table->foreign('participants')->references('id')->on('participants');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
