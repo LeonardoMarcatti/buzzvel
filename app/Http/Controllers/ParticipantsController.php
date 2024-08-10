@@ -3,38 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ParticipantsRequest;
+use App\Http\Resources\ParticipantsResource;
 use App\Models\ParticipantsModel;
-use Illuminate\Http\Request;
-use App\http\Resources\ParticipantsResource;
 
 class ParticipantsController extends Controller
 {
-    public function getAllParticipants() : object
+    public function getAllParticipants() : object|array
     {
-        $participants =  ParticipantsModel::all();
-        return ParticipantsResource::collection($participants);
+        $participants = ParticipantsModel::all();
+        return \response()->json(count($participants) > 0 ? ['status' => true,
+        'participants' => ParticipantsResource::collection($participants)] : ['status' => false, 'message' => 'No participats found'] );
     }
 
-    public function getParticipant(Request $request) : object
+    public function getParticipant(ParticipantsRequest $request) : object
     {
+        $request->validated();
+
         $id = $request->id;
         $name = $request->name;
 
         if ($id) {
-            return ParticipantsModel::find($id);
+            $participant = ParticipantsModel::find($id);
         }
 
         if ($name) {
-            return ParticipantsModel::where('name', $name)->first();
+            $participant = ParticipantsModel::where('name', 'like', '%' . $name . '%')->get();
+            $participant = count($participant) >0 ? $participant : null;
         }
 
-        return ['status' => false, 'message' => 'User not found!'];
+        if ($participant) {
+            return \response()->json(['status' => true, 'participant' => $participant]);
+        }
+
+        return \response()->json(['status' => false, 'message' => 'User not found!']);
     }
 
     public function createParticipant(ParticipantsRequest $request)
     {
         $request->validated();
         ParticipantsModel::create($request->all());
-        return ['status' => true, 'message' => 'Participant created!'];
+        return \response()->json(['status' => true, 'message' => 'Participant created!']);
     }
 }

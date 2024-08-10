@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ParticipantsRequest extends FormRequest
+class AddParticipantsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class ParticipantsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string',
-            'id' => 'integer'
+            'holiday' => 'required|integer',
+            'participants' => 'required|array|min:1',
         ];
     }
 }

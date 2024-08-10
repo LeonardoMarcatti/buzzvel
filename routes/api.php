@@ -18,7 +18,9 @@ Route::controller(AuthController::class)->group(function(){
 Route::controller(HolidayController::class)->group(function(){
     Route::middleware('auth:sanctum')->group(function(){
         Route::get('/holiday/all', 'getAllHolidays')->name('getAllHolidays');
+        Route::get('/holiday/{id}', 'getHolydayByID')->name('getHolydayByID');
         Route::post('/holiday/createHoliday', 'createHoliday')->name('createHoliday');
+        Route::post('/holiday/addParticipants', 'addParticipants')->name('addParticipants');
     });
 });
 
@@ -31,5 +33,7 @@ Route::controller(UsersController::class)->group(function(){
 Route::controller(ParticipantsController::class)->group(function(){
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/participants/new', 'createParticipant')->name('createParticipant');
+        Route::get('/participants/getParticipant', 'getParticipant')->name('getParticipant');
+        Route::get('/participants/all', 'getAllParticipants')->name('getAllParticipants');
     });
 });

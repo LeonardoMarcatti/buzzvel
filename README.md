@@ -1,6 +1,4 @@
 <p></p>
-<h2></h2>
-<h3></h3>
 <h1>Introduction</h1>
 <p>The following instrictions provides explanations about how to use this API by describing how to setup everything that is necessary to use it. </p>
 <p>The building of this API is part of a Buzzvel challenge to find an candidate for joining its team.</p>
@@ -12,7 +10,7 @@
 <p>First of all, it is important to have an data bank user with permissions to manage buzzvel bank actions like, create, read, update and delete.</p>
 <p>APP_URL=ip_address/path_to_folder/buzzvel/public/</p>
 <p>The application URL represent the main entrance for your system.</p>
-<p>DB_CONNECTION=your_DB/</p>
+<p>DB_CONNECTION=your_DB</p>
 <p>Some options are: mysql, mariadb, pgsql, sqlite or sqlsrv</p>
 <p>DB_HOST=IP address</p>
 <p>DB_PORT=port number</p>
@@ -23,6 +21,7 @@
 <h2>Data Bank</h2>
 <h3>Intro</h3>
 <p>The data bank was build with only three tables - holiday, participants and holidays_participants. The reason behind this is to allow more felxibiliy when it comes to creation of participants as well as holidays.</p>
+<p>In order to create the data bank it is necessary to entrer in the project folder and type <b>php artisan migrate</b></p>
 <h2>Holiday Table</h2>
 <p>It contains information about holidays. The most inportante ones are: id, title, descriiption, location, and date. All of them are string type except for td and date.</p>
 <h2>Participants Table</h2>
@@ -45,9 +44,10 @@
 }
 </b>
 <p>When using API testing programs like Postman or Insomnia it is necessary to ajust some headers parameters in order Laravel to understand that the client is an API client. It is requred to set Accept and Content-Type to application/json</p>
-
+<p>In general every response from any endpoint will follow this pattern: ['status' => boolean, data]. Exception are for logup, login and logout.</p>
+<h3>Login, Logoup and Logout Endpoints</h3>
 <h4>api/logup</h4>
-<p>Here we sand the following data: name, email, password and password_confirmation</p>
+<p>Here we send the following data: name, email, password and password_confirmation</p>
 <p>After sending the correct data to the API a message about the creation of a new user is send back to the client. On the other hand, if send missing data or wrong data a message will be returned about what went wrong.</p>
 <h4>api/login</h4>
 <p>Login is necessary to get your access token. Here you send your email address and your password.</p>
@@ -61,5 +61,21 @@
 </b>
 <h4>api/logout</h4>
 <p>Here you do not need to send anything. Just send an GET request and all your active tokens will be erased.</p>
-<p></p>
-<p></p>
+<h3>Paricipants Endpoints</h3>
+<h4>api/participant/new</h4>
+<p>In this endpoint you create a new participant. For this it is required to send the name.</p>
+<h4>api/participant/getParticipant</h4>
+<p>In this endpoint you retrieve data about any participant. To get data about an particular participant you need to send the name or id.</p>
+<p>You do not need to know the entire name of the participant. It requires just part of the name and a list of participants will be retrieved.</p>
+<h4>api/participants/getAllParticipants</h4>
+<p>This endpoint provides all participants found in the data bank. It does not require any data to be send to it.</p>
+<h3>Holidays Endpoints</h3>
+<h4>api/holiday/all</h4>
+<p>Here you will find a list of all holidays saved with all participants in each one.</p>
+<h4>api/holiday/addParticipants</h4>
+<p>In this endpoint you will add participants to holidays. In order to do this you must have at least one holiday saved on data bank as well as one participant.</p>
+<p>For this you must send the id for the holiday and an array containing the ids of each participant.</p>
+<p>Example: {
+    "holiday" : 2,
+    "participants" : [1, 3, 4, 8]
+}</p>
