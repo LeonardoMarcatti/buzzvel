@@ -83,5 +83,5 @@
     "holiday" : 2,
     "participants" : [1, 3, 4, 8]
 }</b></p>
-<h4>api/holiday/$</h4>
+<h4>api/updateHoliday/$</h4>
 <p>This is the endpoint for updating any holiday you want. Just replace the '$' symbol for the id number of holiday required. For this to work you got to send any or all of the following data: title, location, date or description.</p>
