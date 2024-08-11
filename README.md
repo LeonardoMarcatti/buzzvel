@@ -79,7 +79,9 @@
 <h4>api/holiday/addParticipants</h4>
 <p>In this endpoint you will add participants to holidays. In order to do this you must have at least one holiday saved on data bank as well as one participant.</p>
 <p>For this you must send the id for the holiday and an array containing the ids of each participant.</p>
-<p>Example: {
+<p><b>Example: {
     "holiday" : 2,
     "participants" : [1, 3, 4, 8]
-}</p>
+}</b></p>
+<h4>api/holiday/$</h4>
+<p>This is the endpoint for updating any holiday you want. Just replace the '$' symbol for the id number of holiday required. For this to work you got to send any or all of the following data: title, location, date or description.</p>

@@ -21,6 +21,7 @@ Route::controller(HolidayController::class)->group(function(){
         Route::get('/holiday/{id}', 'getHolydayByID')->name('getHolydayByID');
         Route::post('/holiday/createHoliday', 'createHoliday')->name('createHoliday');
         Route::post('/holiday/addParticipants', 'addParticipants')->name('addParticipants');
+        Route::patch('/holiday/{id}', 'updateHoliday')->name('updateHoliday');
     });
 });
 

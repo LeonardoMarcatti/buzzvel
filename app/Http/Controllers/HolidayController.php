@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HolidayRequest;
 use App\Http\Requests\AddParticipantsRequest;
+use App\Http\Requests\UpdateHolidayRequest;
 use App\Http\Resources\HolidayResource;
 use App\Models\HolidayModel;
 use App\Models\HolidaysParticipantsModel;
@@ -44,5 +45,18 @@ class HolidayController extends Controller
         }
 
         return \response()->json(['status' => true, 'message' => 'All participants was added!']);
+    }
+
+    public function updateHoliday(UpdateHolidayRequest $request) : array|object
+    {
+
+        $request->validated();
+        $update = HolidayModel::where('id', $request->id)->update($request->all());
+
+        if ($update) {
+            return \response()->json(['status' => true, 'message' => 'Holiday updated!']);
+        }
+
+        return \response()->json(['status' => false, 'message' => 'Was not possible to update']);
     }
 }
