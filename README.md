@@ -70,6 +70,8 @@
 <p>You do not need to know the entire name of the participant. It requires just part of the name and a list of participants will be retrieved.</p>
 <h4>api/participants/getAllParticipants</h4>
 <p>This endpoint provides all participants found in the data bank. It does not require any data to be send to it.</p>
+<h4>api/updateparticipant/$</h4>
+<p>This endpoint aims to update the participant name. Replace the $ symbol for the id number of the participant you want to change. For this to work you must send the name only.</p>
 
 <h3>Holidays Endpoints</h3>
 <h4>api/holiday/$</h4>
@@ -85,3 +87,5 @@
 }</b></p>
 <h4>api/updateHoliday/$</h4>
 <p>This is the endpoint for updating any holiday you want. Just replace the '$' symbol for the id number of holiday required. For this to work you got to send any or all of the following data: title, location, date or description.</p>
+<h4>api/holiday/pdf/$</h4>
+<p>In this endpoint you download a PDF file with informations about a holiday sicha as title, description, date, location and participants. All you have to do is replace the $ symbol for the id number of a particular holiday.</p>

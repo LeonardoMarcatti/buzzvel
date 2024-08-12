@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ParticipantsRequest;
+use App\Http\Requests\UpdateParticipantRequest;
 use App\Http\Resources\ParticipantsResource;
 use App\Models\ParticipantsModel;
 
@@ -38,10 +39,20 @@ class ParticipantsController extends Controller
         return \response()->json(['status' => false, 'message' => 'User not found!']);
     }
 
-    public function createParticipant(ParticipantsRequest $request)
+    public function createParticipant(ParticipantsRequest $request) : array|object
     {
         $request->validated();
         ParticipantsModel::create($request->all());
         return \response()->json(['status' => true, 'message' => 'Participant created!']);
+    }
+
+    public function updateParticipant(UpdateParticipantRequest $request)  : array|object
+    {
+        $request->validated();
+        $update = ParticipantsModel::where('id', $request->id)->update($request->all());
+        if ($update) {
+            return \response()->json(['status' => true, 'message' => 'Participant updated!']);
+        }
+        return \response()->json(['status' => false, 'message' => 'Participant not found!']);
     }
 }

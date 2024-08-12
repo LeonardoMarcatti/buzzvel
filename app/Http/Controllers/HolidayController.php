@@ -5,16 +5,30 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HolidayRequest;
 use App\Http\Requests\AddParticipantsRequest;
 use App\Http\Requests\UpdateHolidayRequest;
-use App\Http\Resources\HolidayResource;
 use App\Models\HolidayModel;
 use App\Models\HolidaysParticipantsModel;
+use App\Models\FullDataModel;
+use App\Models\ParticipantsModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class HolidayController extends Controller
 {
-    public function getAllHolidays()
+    private array $data;
+
+    public function getAllHolidays() : array|object
     {
-        return \response()->json(['status' => true, 'holidays' => HolidayResource::collection(HolidayModel::all())]);
+        $holidays = FullDataModel::all();
+        foreach ($holidays as $key => $holiday) {
+            $participantsArray = [];
+            $participants = HolidaysParticipantsModel::where('id_holiday', $holiday->id)->get();
+            foreach ($participants as $key => $participant) {
+                $name = ParticipantsModel::where('id', $participant->id_participant)->get('name');
+                $participantsArray[] = $name[0]->name;
+            }
+            $holiday->participants = $participantsArray;
+        }
+        return $holidays;
     }
 
     public function createHoliday(HolidayRequest $request) : array|object
@@ -35,6 +49,26 @@ class HolidayController extends Controller
             return \response()->json(['status' => true, 'holiday' => $holiday]);
         }
         return \response()->json(['status' => false, 'message' => 'Holiday not found!']);
+    }
+
+    public function getPDF(Request $request)
+    {
+        $holiday = FullDataModel::find($request->id);
+        $participantsArray = [];
+        $participants = HolidaysParticipantsModel::where('id_holiday', $request->id)->get();
+        foreach ($participants as $key => $participant) {
+            $name = ParticipantsModel::where('id', $participant->id_participant)->get('name');
+            $participantsArray[] = $name[0]->name;
+        }
+        $holiday->participants = $participantsArray;
+
+        $this->data['holiday'] = $holiday;
+
+
+        $pdf = Pdf::loadView('pdf', $this->data);
+        // return $pdf->stream();
+        return $pdf->download('holiday.pdf');
+        // return \view('pdf', $this->data);
     }
 
     public function addParticipants(AddParticipantsRequest $request): array|object

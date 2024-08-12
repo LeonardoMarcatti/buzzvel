@@ -23,6 +23,7 @@ Route::controller(HolidayController::class)->group(function(){
         Route::post('/holiday/addParticipants', 'addParticipants')->name('addParticipants');
         Route::patch('/updateHoliday/{id}', 'updateHoliday')->name('updateHoliday');
     });
+        Route::get('/holiday/pdf/{id}', 'getPDF')->name('getPDF');
 });
 
 Route::controller(UsersController::class)->group(function(){
@@ -36,5 +37,6 @@ Route::controller(ParticipantsController::class)->group(function(){
         Route::post('/participants/new', 'createParticipant')->name('createParticipant');
         Route::get('/participants/getParticipant', 'getParticipant')->name('getParticipant');
         Route::get('/participants/all', 'getAllParticipants')->name('getAllParticipants');
+        Route::patch('/updateparticipant/{id}', 'updateParticipant')->name('updateParticipant');
     });
 });
