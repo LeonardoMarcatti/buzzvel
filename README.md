@@ -99,7 +99,10 @@
 
 <h3>Auth Tests</h3>
 <p>In this set of tests you will find ralated to authentication tests like login, logup and logout. In each one several assertions are made to make sure everything in correct.</p>
+<h4>Logup Test</h4>
 <p>The first test to run is named testLogup. In this test an user called John Doe will be created and a JSON response will return to be evaluated.</p>
+<h4>Login Test</h4>
 <p>The second test to run is very important as it provides the token you gonna need for others tests. The token will be displayed after the end of this test and you have to use it on other test sets like HolidayTest and PariticpantsTest. Here the its e-mail and its password created in logup test will be used to evaluate the login feature.</p>
 <p>On HolidayTest and PariticpantsTest you will see a message written <b>'place token here'</b> where you must use the token provided earlier.</p>
-<p>The third and last one is testLogout. This test depends on login as it provides logout with the token</p>
+<h4>Logout Test</h4>
+<p>The third and last one is testLogout. This test depends on login as it provides logout with the token. Here the token will be broken and after that is no possible to use it anymore.</p>
