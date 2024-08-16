@@ -6,9 +6,11 @@
 
 <h2>Setup Your System</h2>
 <h3>Intro</h3>
-<p>It is necessary to make some ajustments on your .env file located inside the project folder. There you must setup some parameters in order this project to run smoothly.</p>
+<p>It is necessary to make some ajustments on your .env  and .env.testing files located inside the project folder. There you must setup some parameters in order this project to run smoothly.</p>
 <p>First of all, it is important to have an data bank user with permissions to manage buzzvel bank actions like, create, read, update and delete.</p>
-<p>APP_URL=ip_address/path_to_folder/buzzvel/public/</p>
+<p>In both .env and .env.testing files make the following changes:</p> 
+<p>APP_URL=ip_address/path_to_folder/buzzvel/public/</p> 
+<b><small>This is the only modification you do not need to make in .env.testing file</small></b>
 <p>The APP_URL represent the main entrance for your system.</p>
 <p>DB_CONNECTION=your_DB</p> - <small>Some options are: mysql, mariadb, pgsql, sqlite or sqlsrv</small>
 <p>DB_HOST=IP address</p>
@@ -22,7 +24,7 @@
 <p>The data bank was build with only three tables - holiday, participants and holidays_participants. The reason behind this is to allow more felxibiliy when it comes to creation of participants as well as holidays.</p>
 <p>In order to create the data bank it is necessary to entrer in the project folder and type <b>php artisan migrate</b></p>
 <h3>Holiday Table</h3>
-<p>It contains information about holidays. The most inportante ones are: id, title, description, location, and date. All of them are string type except for td and date.</p>
+<p>It contains information about holidays. The most importante ones are: id, title, description, location, and date. All of them are string type except for td and date.</p>
 <h3>Participants Table</h3>
 <p>It holds information about people who will participate on holidays trips. Here the most important information are id(integer) and name(string).</p>
 <h3>Holidays_Participants Table</h3>
@@ -31,13 +33,13 @@
 
 <h2>Endpoints</h2>
 <h3>Intro</h3>
-<p>For some endpoints it is necessary to send some data in order to get what is wanted. It is the case of POST method endpoints like login, logup, getPlan, getAllPlans, getPFD, addParticipant and PUT method like updatePlan or updateparticipant</p>
-<p>The data that must be send to API must follow JSON format key/value inside curly braces like in the example above</p>
+<p>For some endpoints it is necessary to send some data in order to get what is wanted. It is the case of POST method endpoints like login, logup, getPlan, getAllPlans, getPFD, addParticipant and PUT method like updatePlan or updateParticipant</p>
+<p>The data that must be send to API must follow JSON format key/value inside curly braces like in the example below</p>
 <p><b>
 {
-    "key1" : "value1",
-    "key2" : "value2",
-    "key3" : "value3",
+    "key1" : "value1", \n
+    "key2" : "value2", \n
+    "key3" : "value3", \n
     .
     .
     .
@@ -51,7 +53,7 @@
 <p>After sending the correct data to the API a message about the creation of a new user is send back to the client. On the other hand, if send missing data or wrong data a message will be returned about what went wrong.</p>
 <h4>api/login</h4>
 <p>Login is necessary to get your access token. Here you send your email address and your password.</p>
-<p>After getting your token you have to save it and use it on the body of your future requisitions. For instance if you use JavaScript to fetch you may set up the headers like following:</p>
+<p>After getting your token you have to save it and use it on the body of your future requisitions. For instance if you use JavaScript to fetch some data you must set up the headers like following:</p>
 <b>
     headers: {
         'Accept': 'application/json',
@@ -89,3 +91,15 @@
 <p>This is the endpoint for updating any holiday you want. Just replace the '$' symbol for the id number of holiday required. For this to work you got to send any or all of the following data: title, location, date or description.</p>
 <h4>api/holiday/pdf/$</h4>
 <p>In this endpoint you download a PDF file with informations about a holiday sicha as title, description, date, location and participants. All you have to do is replace the $ symbol for the id number of a particular holiday.</p>
+<h2>Testing</h2>
+<h3>Intro</h3>
+<p>One of the most importante features of this challenge is testing. Inside tests folder there are two types of test - unit test and feature test. Unit test are reponsable for testing small portions of applications and on the other hand feature test are responsable for testing how different parts of application interact with one another.</p>
+<p>You will find four files inside each test folders. They are: AuthTest, HolidayTest, PariticpantsTest and ErrorTests. Each one aim to evaluate a certein group of features they are related to. AuthTest must be the very first test you must run because in one of the assertions inside of it you will get an token that you must add to other assertions and this token is a random string compose of several characters and its langth varies.</p>
+<p>It is strongly recommended to run all unit test first and after the end of them run feature tests.</p>
+
+<h3>Auth Tests</h3>
+<p>In this set of tests you will find ralated to authentication tests like login, logup and logout. In each one several assertions are made to make sure everything in correct.</p>
+<p>The first test to run is named testLogup. In this test an user called John Doe will be created and a JSON response will return to be evaluated.</p>
+<p>The second test to run is very important as it provides the token you gonna need for others tests. The token will be displayed after the end of this test and you have to use it on other test sets like HolidayTest and PariticpantsTest. Here the its e-mail and its password created in logup test will be used to evaluate the login feature.</p>
+<p>On HolidayTest and PariticpantsTest you will see a message written <b>'place token here'</b> where you must use the token provided earlier.</p>
+<p>The third and last one is testLogout. This test depends on login as it provides logout with the token</p>

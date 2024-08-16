@@ -63,12 +63,8 @@ class HolidayController extends Controller
         $holiday->participants = $participantsArray;
 
         $this->data['holiday'] = $holiday;
-
-
         $pdf = Pdf::loadView('pdf', $this->data);
-        // return $pdf->stream();
         return $pdf->download('holiday.pdf');
-        // return \view('pdf', $this->data);
     }
 
     public function addParticipants(AddParticipantsRequest $request): array|object

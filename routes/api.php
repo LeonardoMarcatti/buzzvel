@@ -11,7 +11,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/logup', 'logup')->name('logup');
     Route::post('/login', 'login')->name('login');
     Route::middleware('auth:sanctum')->group(function(){
-        Route::post('/logout', 'logout')->name('logout');
+        Route::get('/logout', 'logout')->name('logout');
     });
 });
 
