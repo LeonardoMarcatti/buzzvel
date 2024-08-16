@@ -6,11 +6,12 @@
 
 <h2>Setup Your System</h2>
 <h3>Intro</h3>
-<p>It is necessary to make some ajustments on your .env  and .env.testing files located inside the project folder. There you must setup some parameters in order this project to run smoothly.</p>
+<p>It is necessary to make some ajustments on your .env and .env.testing files located inside the project folder. There you must setup some parameters in order this project to run smoothly.</p>
 <p>First of all, it is important to have an data bank user with permissions to manage buzzvel bank actions like, create, read, update and delete.</p>
 <p>In both .env and .env.testing files make the following changes:</p> 
-<p>APP_URL=ip_address/path_to_folder/buzzvel/public/</p> 
+APP_URL=ip_address/path_to_folder/buzzvel/public/
 <b><small>This is the only modification you do not need to make in .env.testing file</small></b>
+<p></p>
 <p>The APP_URL represent the main entrance for your system.</p>
 <p>DB_CONNECTION=your_DB</p> - <small>Some options are: mysql, mariadb, pgsql, sqlite or sqlsrv</small>
 <p>DB_HOST=IP address</p>
@@ -72,12 +73,14 @@
 <p>You do not need to know the entire name of the participant. It requires just part of the name and a list of participants will be retrieved.</p>
 <h4>api/participants/getAllParticipants</h4>
 <p>This endpoint provides all participants found in the data bank. It does not require any data to be send to it.</p>
-<h4>api/updateparticipant/$</h4>
-<p>This endpoint aims to update the participant name. Replace the $ symbol for the id number of the participant you want to change. For this to work you must send the name only.</p>
+<h4>api/updateparticipant/?</h4>
+<p>This endpoint aims to update the participant name. Replace the ? symbol for the id number of the participant you want to change. For this to work you must send the name only.</p>
 
 <h3>Holidays Endpoints</h3>
-<h4>api/holiday/$</h4>
-<p>In this endpoint replace the '$' symbol for an id number to get data about a particular holiday.</p>
+<h4>api/holiday/new</h4>
+<p>This endpoint is for creating a new holiday. Here you must send the following data: title, description, date and location. All of those are string types data.</p>
+<h4>api/holiday/?</h4>
+<p>In this endpoint replace the '?' symbol for an id number to get data about a particular holiday.</p>
 <h4>api/holiday/all</h4>
 <p>Here you will find a list of all holidays saved with all participants in each one.</p>
 <h4>api/holiday/addParticipants</h4>
@@ -87,15 +90,15 @@
     "holiday" : 2,
     "participants" : [1, 3, 4, 8]
 }</b></p>
-<h4>api/updateHoliday/$</h4>
-<p>This is the endpoint for updating any holiday you want. Just replace the '$' symbol for the id number of holiday required. For this to work you got to send any or all of the following data: title, location, date or description.</p>
-<h4>api/holiday/pdf/$</h4>
-<p>In this endpoint you download a PDF file with informations about a holiday sicha as title, description, date, location and participants. All you have to do is replace the $ symbol for the id number of a particular holiday.</p>
+<h4>api/updateHoliday/?</h4>
+<p>This is the endpoint for updating any holiday you want. Just replace the '?' symbol for the id number of holiday required. For this to work you got to send any or all of the following data: title, location, date or description.</p>
+<h4>api/holiday/pdf/?</h4>
+<p>In this endpoint you download a PDF file with informations about a holiday sicha as title, description, date, location and participants. All you have to do is replace the ? symbol for the id number of a particular holiday.</p>
 <h2>Testing</h2>
 <h3>Intro</h3>
 <p>One of the most importante features of this challenge is testing. Inside tests folder there are two types of test - unit test and feature test. Unit test are reponsable for testing small portions of applications and on the other hand feature test are responsable for testing how different parts of application interact with one another.</p>
-<p>You will find four files inside each test folders. They are: AuthTest, HolidayTest, PariticpantsTest and ErrorTests. Each one aim to evaluate a certein group of features they are related to. AuthTest must be the very first test you must run because in one of the assertions inside of it you will get an token that you must add to other assertions and this token is a random string compose of several characters and its langth varies.</p>
-<p>It is strongly recommended to run all unit test first and after the end of them run feature tests.</p>
+<p>You will find four files inside unit test folder. They are: AuthTest, HolidayTest, PariticpantsTest and ErrorTests. Each one aim to evaluate a certein group of features they are related to. AuthTest must be the very first test you must run because in one of the assertions inside of it you will get an token that you must add to other assertions and this token is a random string compose of several characters and its langth varies.</p>
+<p>For some tests you will find Data Providers and they are for running the same test a few times for two reasons. First, to fulfill the data bank and for the use of other tests. Sencondly to make sure when running one test more than once we stress the system a little ensuring it is robust one.</p>
 
 <h3>Auth Tests</h3>
 <p>In this set of tests you will find ralated to authentication tests like login, logup and logout. In each one several assertions are made to make sure everything in correct.</p>
@@ -119,3 +122,15 @@
 <p>It is important to highlight that any or all data in the holiday can be changed so, only ID is mandatory data to be send here.</p>
 <h4>Get PDF Test</h4>
 <p>In this test it is evaluated the creation and download availability of a PDF file. To work it is necessary to provide the holiday ID.</p>
+<h3>Participants Tests</h3>
+<p>In this set of tests you will find several tests related to participants. Those tests are ment to create, update, read and delete (CRUD) participants on the data bank.</p>
+<h4>Create Participant Test</h4>
+<p>The first test is for the creation of participants.</p>
+<h4>Get All Participants Test</h4>
+<p>In this test you will get every single participant found in data bank.</p>
+<h4>Get Participant Test</h4>
+<p>This test aim to get a single participant or a small group of participats depending on what is send as a data. If and id is to be sent a single participant will be retrieved. On the ohter hand if a name is what is sent more then one participant will be returned because the serch by name is flexible and the system will look for an name that contains a string.</p>
+<h4>Update Participant Test</h4>
+<p>This test make some changes in participants. Here we change participants names only and after that the test evaluates if the processes was carried out rightly.</p>
+<h4>Get All Participants After Updated Test</h4>
+<p>After updating all participants we make a double check to see if all participants involved in the update process were updated correctly.</p>

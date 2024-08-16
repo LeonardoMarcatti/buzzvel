@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use PHPUnit\Framework\Attributes\Depends;
 
 class AuthTests
  extends TestCase
@@ -17,14 +16,14 @@ class AuthTests
         $response->assertJson(['status' => true, 'message' => 'User created!']);
     }
 
-    public function testLogin() : string
+    public function testLogin() : void
     {
         $response = $this->postJson('/api/login', ['email' => 'johnDoe@test.com', 'password' => 123456]);
-        $response->assertStatus(200);
+        $response->assertValid();
+        $response->assertOK();
         $response->assertJsonIsObject();
         $response->assertJson(['status' => true]);
         $response->dump();
-        return $response['token'];
     }
 
     // #[Depends('testLogin')]

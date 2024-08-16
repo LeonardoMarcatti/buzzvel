@@ -16,24 +16,23 @@ class ParticipantsController extends Controller
         'participants' => ParticipantsResource::collection($participants)] : ['status' => false, 'message' => 'No participats found'] );
     }
 
-    public function getParticipant(ParticipantsRequest $request) : object
+    public function getParticipant(ParticipantsRequest $request) : object|array
     {
-        $request->validated();
 
-        $id = $request->id;
-        $name = $request->name;
-
-        if ($id) {
-            $participant = ParticipantsModel::find($id);
+        $search = null;
+        $p = $request->p;
+        $id = \intval($request->p);
+        if ($id != 0) {
+            $search = ParticipantsModel::find($id);
         }
 
-        if ($name) {
-            $participant = ParticipantsModel::where('name', 'like', '%' . $name . '%')->get();
-            $participant = count($participant) >0 ? $participant : null;
+        if (!$id) {
+            $search = ParticipantsModel::where('name', 'like', '%' . $p . '%')->get();
+            $search = count($search) >0 ? $search : null;
         }
 
-        if ($participant) {
-            return \response()->json(['status' => true, 'participant' => $participant]);
+        if ($search) {
+            return \response()->json(['status' => true, 'participant' => $search]);
         }
 
         return \response()->json(['status' => false, 'message' => 'User not found!']);
@@ -43,7 +42,7 @@ class ParticipantsController extends Controller
     {
         $request->validated();
         ParticipantsModel::create($request->all());
-        return \response()->json(['status' => true, 'message' => 'Participant created!']);
+        return \response()->json(['status' => true, 'message' => 'Participant created!'], 200);
     }
 
     public function updateParticipant(UpdateParticipantRequest $request)  : array|object
@@ -51,8 +50,8 @@ class ParticipantsController extends Controller
         $request->validated();
         $update = ParticipantsModel::where('id', $request->id)->update($request->all());
         if ($update) {
-            return \response()->json(['status' => true, 'message' => 'Participant updated!']);
+            return \response()->json(['status' => true, 'message' => 'Participant updated!'], 200);
         }
-        return \response()->json(['status' => false, 'message' => 'Participant not found!']);
+        return \response()->json(['status' => false, 'message' => 'Participant not found!'],200);
     }
 }

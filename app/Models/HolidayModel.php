@@ -18,4 +18,6 @@ class HolidayModel extends Model
         'location',
         'participants'
     ];
+
+    protected $hidden = ['updated_at', 'created_at'];
 }

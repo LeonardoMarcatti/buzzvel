@@ -11,4 +11,5 @@ class ParticipantsModel extends Model
 
     protected $table = 'participants';
     protected $fillable = ['name'];
+    protected $hidden = ['updated_at', 'created_at'];
 }

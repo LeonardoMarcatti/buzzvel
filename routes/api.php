@@ -19,7 +19,7 @@ Route::controller(HolidayController::class)->group(function(){
     Route::middleware('auth:sanctum')->group(function(){
         Route::get('/holiday/all', 'getAllHolidays')->name('getAllHolidays');
         Route::get('/holiday/{id}', 'getHolydayByID')->name('getHolydayByID');
-        Route::post('/holiday/createHoliday', 'createHoliday')->name('createHoliday');
+        Route::post('/holiday/new', 'createHoliday')->name('createHoliday');
         Route::post('/holiday/addParticipants', 'addParticipants')->name('addParticipants');
         Route::patch('/updateHoliday/{id}', 'updateHoliday')->name('updateHoliday');
         Route::get('/holiday/pdf/{id}', 'getPDF')->name('getPDF');
@@ -35,7 +35,7 @@ Route::controller(UsersController::class)->group(function(){
 Route::controller(ParticipantsController::class)->group(function(){
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/participants/new', 'createParticipant')->name('createParticipant');
-        Route::get('/participants/getParticipant', 'getParticipant')->name('getParticipant');
+        Route::get('/participants/getParticipant/{p}', 'getParticipant')->name('getParticipant');
         Route::get('/participants/all', 'getAllParticipants')->name('getAllParticipants');
         Route::patch('/updateparticipant/{id}', 'updateParticipant')->name('updateParticipant');
     });
