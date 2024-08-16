@@ -97,25 +97,24 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <h2>Testing</h2>
 <h3>Intro</h3>
 <p>One of the most importante features of this challenge is testing. Inside tests folder there are two types of test - unit test and feature test. Unit test are reponsable for testing small portions of applications and on the other hand feature test are responsable for testing how different parts of application interact with one another.</p>
-<p>You will find four files inside unit test folder. They are: AuthTest, HolidayTest, PariticpantsTest and ErrorTests. Each one aim to evaluate a certein group of features they are related to. AuthTest must be the very first test you must run because in one of the assertions inside of it you will get an token that you must add to other assertions and this token is a random string compose of several characters and its langth varies.</p>
+<p>You will find five files inside unit test folder. They are: AuthTest, HolidayTest, PariticpantsTest, ErrorTests and LogoutTest. Each one aim to evaluate a certein group of features they are related to. AuthTest must be the very first test you must run because in one of the assertions inside of it you will get an token that you must add to other assertions and this token is a random string compose of several characters and its langth varies.</p>
 <p>For some tests you will find Data Providers and they are for running the same test a few times for two reasons. First, to fulfill the data bank and for the use of other tests. Sencondly to make sure when running one test more than once we stress the system a little ensuring it is robust one.</p>
 
 <h3>Auth Tests</h3>
-<p>In this set of tests you will find ralated to authentication tests like login, logup and logout. In each one several assertions are made to make sure everything in correct.</p>
+<p>In this set of tests you will find tests ralated to authentication like login and logup In each one several assertions are made to make sure everything is correct.</p>
 <h4>Logup Test</h4>
 <p>The first test to run is named testLogup. In this test an user called John Doe will be created and a JSON response will return to be evaluated.</p>
 <h4>Login Test</h4>
-<p>The second test to run is very important as it provides the token you gonna need for others tests. The token will be displayed after the end of this test and you have to use it on other test sets like HolidayTest and PariticpantsTest. Here the its e-mail and its password created in logup test will be used to evaluate the login feature.</p>
+<p>The second test to run is very important as it provides the token you gonna need for others tests. The token will be displayed after the end of this test and you have to use it on other test sets like HolidayTest and PariticpantsTest. Here its e-mail and its password created in logup test will be used to evaluate the login feature.</p>
 <p>On HolidayTest and PariticpantsTest you will see a message written <b>'place token here'</b> where you must use the token provided earlier.</p>
-<h4>Logout Test</h4>
-<p>The third and last one is testLogout. This test depends on login as it provides to logout with the token. Here the token will be invalidated and after that is no possible to use it anymore.</p>
+
 <h3>Holiday Tests</h3>
-<p>This is a set of test for creating, reading, deleting and updating holidays. For this test to run you must enter the token retrieved in Auth Tests - Login Test. This token is necessary in order to allow API connections since only login and logoup do not need token to work.</p>
+<p>This is a set of test for creating, reading, deleting and updating holidays. For this test to run you must enter the token retrieved in Auth Tests - Login Test. This token is necessary in order to allow API connections since only log in and log up do not need token to work.</p>
 <h4>Create Holiday Test</h4>
 <p>This is the first test to run and it needs a set of data to automaticaly create some holidays. This set of data is named holidayProviderData and it is responsible for providing data to that funcion.</p>
 <h4>Get All Holidays Test</h4>
 <p>The second test returns all holidays created earlier. Here the test suite assesses that every single one is exactly the way it should be.</p>
-<h>Get tHolyday By ID Test</h>
+<h4>Get Holyday By ID Test</h4>
 <p>In this test we retrieve a single holiday by its ID and evaluated it.</p>
 <h4>Update Holiday Test</h4>
 <p>For this to work it is necessary to provide some data. In this case it is provided the ID of the holiday as well as any data ralated to what is wanted to be change - title, location, date or description.</p>
@@ -125,12 +124,15 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <h3>Participants Tests</h3>
 <p>In this set of tests you will find several tests related to participants. Those tests are ment to create, update, read and delete (CRUD) participants on the data bank.</p>
 <h4>Create Participant Test</h4>
-<p>The first test is for the creation of participants.</p>
+<p>The first test is for the creation of participants. Only participants names are send here. For this to work there is a Data Provider named nameProvider</p>
 <h4>Get All Participants Test</h4>
 <p>In this test you will get every single participant found in data bank.</p>
 <h4>Get Participant Test</h4>
-<p>This test aim to get a single participant or a small group of participats depending on what is send as a data. If and id is to be sent a single participant will be retrieved. On the ohter hand if a name is what is sent more then one participant will be returned because the serch by name is flexible and the system will look for an name that contains a string.</p>
+<p>This test aim to get a single participant or a small group of participats depending on what is send as a data. If and id is to be sent a single participant will be retrieved. On the ohter hand if a name is what is sent more then one participant will be returned because the search by name is flexible and the system will look for an name that contains a string.</p>
 <h4>Update Participant Test</h4>
 <p>This test make some changes in participants. Here we change participants names only and after that the test evaluates if the processes was carried out rightly.</p>
 <h4>Get All Participants After Updated Test</h4>
 <p>After updating all participants we make a double check to see if all participants involved in the update process were updated correctly.</p>
+
+<h3>Logout Test</h3>
+<p>The last one is testLogout. This test depends on login as it provides to logout with the token. Here the token will be invalidated and after that is no possible to use it anymore.</p>

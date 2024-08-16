@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('holidays_participants', function (Blueprint $table) {
             $table->unsignedBigInteger('id_participant');
             $table->unsignedBigInteger('id_holiday');
-            $table->foreign('id_participant')->references('id')->on('participants');
-            $table->foreign('id_holiday')->references('id')->on('holiday');
+            $table->foreign('id_participant')->references('id')->on('participants')->cascadeOnDelete();
+            $table->foreign('id_holiday')->references('id')->on('holiday')->cascadeOnDelete();
             $table->primary(['id_participant', 'id_holiday']);
             $table->timestamps();
         });
