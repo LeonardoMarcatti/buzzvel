@@ -22,8 +22,8 @@ Route::controller(HolidayController::class)->group(function(){
         Route::post('/holiday/createHoliday', 'createHoliday')->name('createHoliday');
         Route::post('/holiday/addParticipants', 'addParticipants')->name('addParticipants');
         Route::patch('/updateHoliday/{id}', 'updateHoliday')->name('updateHoliday');
-    });
         Route::get('/holiday/pdf/{id}', 'getPDF')->name('getPDF');
+    });
 });
 
 Route::controller(UsersController::class)->group(function(){

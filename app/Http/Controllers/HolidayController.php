@@ -38,7 +38,7 @@ class HolidayController extends Controller
 
         if ($valid) {
             HolidayModel::create($data);
-            return \response()->json(['status' => true, 'message' => 'Holiday created!']);
+            return \response()->json(['status' => true, 'message' => 'Holiday created!'], 200);
         }
     }
 
@@ -46,9 +46,9 @@ class HolidayController extends Controller
     {
         $holiday = HolidayModel::find($request->id);
         if ($holiday) {
-            return \response()->json(['status' => true, 'holiday' => $holiday]);
+            return \response()->json(['status' => true, 'holiday' => $holiday], 200);
         }
-        return \response()->json(['status' => false, 'message' => 'Holiday not found!']);
+        return \response()->json(['status' => false, 'message' => 'Holiday not found!'], 200);
     }
 
     public function getPDF(Request $request)
@@ -74,7 +74,7 @@ class HolidayController extends Controller
             HolidaysParticipantsModel::create(['id_holiday' => $request->holiday, 'id_participant' => $participant]);
         }
 
-        return \response()->json(['status' => true, 'message' => 'All participants was added!']);
+        return \response()->json(['status' => true, 'message' => 'All participants was added!'], 200);
     }
 
     public function updateHoliday(UpdateHolidayRequest $request) : array|object
@@ -84,9 +84,9 @@ class HolidayController extends Controller
         $update = HolidayModel::where('id', $request->id)->update($request->all());
 
         if ($update) {
-            return \response()->json(['status' => true, 'message' => 'Holiday updated!']);
+            return \response()->json(['status' => true, 'message' => 'Holiday updated!'], 200);
         }
 
-        return \response()->json(['status' => false, 'message' => 'Was not possible to update']);
+        return \response()->json(['status' => false, 'message' => 'Was not possible to update'], 200);
     }
 }

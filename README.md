@@ -37,9 +37,9 @@
 <p>The data that must be send to API must follow JSON format key/value inside curly braces like in the example below</p>
 <p><b>
 {
-    "key1" : "value1", \n
-    "key2" : "value2", \n
-    "key3" : "value3", \n
+    "key1" : "value1",
+    "key2" : "value2",
+    "key3" : "value3",
     .
     .
     .
@@ -105,4 +105,17 @@
 <p>The second test to run is very important as it provides the token you gonna need for others tests. The token will be displayed after the end of this test and you have to use it on other test sets like HolidayTest and PariticpantsTest. Here the its e-mail and its password created in logup test will be used to evaluate the login feature.</p>
 <p>On HolidayTest and PariticpantsTest you will see a message written <b>'place token here'</b> where you must use the token provided earlier.</p>
 <h4>Logout Test</h4>
-<p>The third and last one is testLogout. This test depends on login as it provides logout with the token. Here the token will be broken and after that is no possible to use it anymore.</p>
+<p>The third and last one is testLogout. This test depends on login as it provides to logout with the token. Here the token will be invalidated and after that is no possible to use it anymore.</p>
+<h3>Holiday Tests</h3>
+<p>This is a set of test for creating, reading, deleting and updating holidays. For this test to run you must enter the token retrieved in Auth Tests - Login Test. This token is necessary in order to allow API connections since only login and logoup do not need token to work.</p>
+<h4>Create Holiday Test</h4>
+<p>This is the first test to run and it needs a set of data to automaticaly create some holidays. This set of data is named holidayProviderData and it is responsible for providing data to that funcion.</p>
+<h4>Get All Holidays Test</h4>
+<p>The second test returns all holidays created earlier. Here the test suite assesses that every single one is exactly the way it should be.</p>
+<h>Get tHolyday By ID Test</h>
+<p>In this test we retrieve a single holiday by its ID and evaluated it.</p>
+<h4>Update Holiday Test</h4>
+<p>For this to work it is necessary to provide some data. In this case it is provided the ID of the holiday as well as any data ralated to what is wanted to be change - title, location, date or description.</p>
+<p>It is important to highlight that any or all data in the holiday can be changed so, only ID is mandatory data to be send here.</p>
+<h4>Get PDF Test</h4>
+<p>In this test it is evaluated the creation and download availability of a PDF file. To work it is necessary to provide the holiday ID.</p>

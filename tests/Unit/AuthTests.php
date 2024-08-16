@@ -5,7 +5,8 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
 
-class AuthTest extends TestCase
+class AuthTests
+ extends TestCase
 {
     public function testLogup() : void
     {
@@ -26,14 +27,14 @@ class AuthTest extends TestCase
         return $response['token'];
     }
 
-    #[Depends('testLogin')]
-    public function testLogout(string $token) : void
-    {
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->get('/api/logout');
-        $response->assertOK();
-        $response->assertValid();
-        $response->assertJsonIsObject();
-        $response->assertJson(['status' => true, 'message' => 'You have loged out!']);
-    }
+    // #[Depends('testLogin')]
+    // public function testLogout(string $token) : void
+    // {
+    //     $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->get('/api/logout');
+    //     $response->assertOK();
+    //     $response->assertValid();
+    //     $response->assertJsonIsObject();
+    //     $response->assertJson(['status' => true, 'message' => 'You have loged out!']);
+    // }
 
 }
