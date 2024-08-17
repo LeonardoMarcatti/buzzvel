@@ -4,8 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 
-class _1AuthTests
- extends TestCase
+class AuthTests extends TestCase
 {
     public function testLogup() : void
     {

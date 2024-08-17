@@ -79,6 +79,7 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <h3>Holidays Endpoints</h3>
 <h4>api/holiday/new</h4>
 <p>This endpoint is for creating a new holiday. Here you must send the following data: title, description, date and location. All of those are string types data.</p>
+<p>The description length must be at least 20 characters long.</p>
 <h4>api/holiday/?</h4>
 <p>In this endpoint replace the '?' symbol for an id number to get data about a particular holiday.</p>
 <h4>api/holiday/all</h4>
@@ -142,6 +143,7 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <p>This test make some changes in participants. Here we change participants names only and after that the test evaluates if the processes was carried out rightly.</p>
 <h4>Get All Participants After Updated Test</h4>
 <p>After updating all participants we make a double check to see if all participants involved in the update process were updated correctly.</p>
-
+<h4>Delete Holiday Test</h4>
+<p>The reason this holiday test is here is due to the fact we must test an deletion of a holiday with participants in it. When a holiday is deleted not only the holiday table in data bank is affected but also another table named holidays_participants and we must be sure that nothing will break.</p>
 <h3>Logout Test</h3>
 <p>The last one is testLogout. This test depends on login as it provides to logout with the token. Here the token will be invalidated and after that is no possible to use it anymore.</p>

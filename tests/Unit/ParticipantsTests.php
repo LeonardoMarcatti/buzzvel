@@ -31,7 +31,7 @@ class ParticipantsTests extends TestCase
     public static function holidaysParticipantsProvider() : array
     {
         return [
-            [1, [2,4]], [2, [1, 3]]
+            [1, [2,4]], [2, [1, 3, 4], 3, [4]]
         ];
     }
 
@@ -93,6 +93,15 @@ class ParticipantsTests extends TestCase
         $response->assertOk();
         $response->assertJsonIsObject();
         $response->assertJson(['status' => true, 'message' => 'All participants was added!']);
+    }
+
+    public function testDeleteHoliday() : void
+    {
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->deleteJson('/api/deleteHoliday/1');
+        $response->assertOk();
+        $response->assertJsonIsObject();
+        $response->assertJsonCount(2);
+        $response->assertJson(['status' => true, 'message' => 'Holiday deleted!']);
     }
 
 }

@@ -39,4 +39,13 @@ class ErrorsTests extends TestCase
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->postJson('/api/user/all');
         $response->assertMethodNotAllowed();
     }
+
+    public function testDeleteHolidayFail() : void
+    {
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->deleteJson('api/deleteHoliday/1');
+        $response->assertOk();
+        $response->assertJsonIsObject();
+        $response->assertJsonCount(2);
+        $response->assertJson(['status' => false, 'message' => 'Holiday not found']);
+    }
 }

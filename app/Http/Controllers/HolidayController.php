@@ -89,4 +89,15 @@ class HolidayController extends Controller
 
         return \response()->json(['status' => false, 'message' => 'Was not possible to update'], 200);
     }
+
+    public function deleteHoliday(Request $request) : array|object
+    {
+        $id = $request->id;
+        $delete = HolidayModel::where('id', $id)->delete();
+        if ($delete) {
+            return \response()->json(['status' => true, 'message' => 'Holiday deleted!'], 200);
+        };
+
+            return \response()->json(['status' => false, 'message' => 'Holiday not found'], 200);
+    }
 }
