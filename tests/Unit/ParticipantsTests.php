@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class ParticipantsTests extends TestCase
 {
-    private string $token = '1|Fb4LmWHnnnnuWIUIZDFMbdaCRgiRzaFAfN4N0Vbo6e0e62b6';
+    private string $token = 'Place token here';
 
     public static function nameProvider() : array
     {
@@ -28,10 +28,17 @@ class ParticipantsTests extends TestCase
         ];
     }
 
+    public static function holidaysParticipantsProvider() : array
+    {
+        return [
+            [1, [2,4]], [2, [1, 3]]
+        ];
+    }
+
     #[DataProvider('nameProvider')]
     public function testCreateParticipant(string $name): void
     {
-        $this->markTestSkipped('OK');
+        // $this->markTestSkipped('OK');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->postJson('/api/participants/new', ['name' => $name]);
         $response->assertValid();
         $response->assertOk();
@@ -41,7 +48,7 @@ class ParticipantsTests extends TestCase
 
     public function testGetAllParticipants() : void
     {
-        $this->markTestSkipped('OK');
+        // $this->markTestSkipped('OK');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/participants/all');
         $response->assertOk();
         $response->assertJsonIsObject();
@@ -51,7 +58,7 @@ class ParticipantsTests extends TestCase
     #[DataProvider('participantProvider')]
     public function testGetParticipant(int|string $participant) : void
     {
-        $this->markTestSkipped('OK');
+        // $this->markTestSkipped('OK');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/participants/getParticipant/' . $participant);
         $response->assertOk();
         $response->assertValid();
@@ -62,6 +69,7 @@ class ParticipantsTests extends TestCase
     #[DataProvider('updateProvider')]
     public function testUpdateParticipant(int $id, string $name) : void
     {
+        // $this->markTestSkipped('OK');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->patchJson('/api/updateparticipant/' . $id, ['name' => $name]);
         $response->assertOk();
         $response->assertValid();
@@ -71,10 +79,20 @@ class ParticipantsTests extends TestCase
 
     public function testGetAllParticipantsAfterUpdated() : void
     {
+        // $this->markTestSkipped('OK');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/participants/all');
         $response->assertOk();
         $response->assertJsonIsObject();
         $response->assertJson(['status' => true, 'participants' => [['id' => 1, 'name' => 'Participant 1 updated!'], ['id' => 2, 'name' => 'Participant 2 updated!'], ['id' => 3, 'name' => 'Participant 3 updated!'], ['id' => 4, 'name' => 'Participant 4 updated!']]]);
+    }
+
+    #[DataProvider('holidaysParticipantsProvider')]
+    public function testAddParticipants(int $holiday, array $participants) : void
+    {
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->postJson('/api/holiday/addParticipants', ['participants' => $participants, 'holiday' => $holiday]);
+        $response->assertOk();
+        $response->assertJsonIsObject();
+        $response->assertJson(['status' => true, 'message' => 'All participants was added!']);
     }
 
 }

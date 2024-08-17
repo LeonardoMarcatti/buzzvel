@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class HolidayTests extends TestCase
 {
-    private string $token = '1|Fb4LmWHnnnnuWIUIZDFMbdaCRgiRzaFAfN4N0Vbo6e0e62b6';
+    private string $token = 'Place token here';
 
     public static function holidayProviderData() : array
     {
@@ -37,8 +37,8 @@ class HolidayTests extends TestCase
     #[DataProvider('holidayProviderData')]
     public function testCreateHoliday(string $title, string $description, string $date, string $location) : void
     {
-        $this->markTestSkipped('ok');
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->postJson('/api/holiday/createHoliday', ['title' => $title, 'description' => $description, 'date' => $date, 'location' => $location]);
+        // $this->markTestSkipped('ok');
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->postJson('/api/holiday/new', ['title' => $title, 'description' => $description, 'date' => $date, 'location' => $location]);
         $response->assertOK();
         $response->assertValid();
         $response->assertJsonIsObject();
@@ -47,7 +47,7 @@ class HolidayTests extends TestCase
 
     public function testGetAllHolidays(): void
     {
-        $this->markTestSkipped('ok');
+        // $this->markTestSkipped('ok');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/holiday/all');
         $response->assertOk();
         $response->assertJsonIsArray();
@@ -62,7 +62,7 @@ class HolidayTests extends TestCase
     #[DataProvider('idProvider')]
     public function testgetHolydayById(int $id) : void
     {
-        $this->markTestSkipped('ok');
+        // $this->markTestSkipped('ok');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/holiday/' . $id);
         $response->assertOk();
         $response->assertJsonIsObject();
@@ -73,7 +73,7 @@ class HolidayTests extends TestCase
     #[DataProvider('updateProvider')]
     public function testUpdateHoliday(int $id, string $title, string $description, string $date, string $location) : void
     {
-        $this->markTestSkipped('ok');
+        // $this->markTestSkipped('ok');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->patchJson('/api/updateHoliday/' . $id, ['description' => $description, 'title' => $title, 'date' => $date, 'location' => $location]);
         $response->assertOK();
         $response->assertValid();
@@ -83,7 +83,7 @@ class HolidayTests extends TestCase
 
     public function testGetAllHolidaysUpdated(): void
     {
-        $this->markTestSkipped('ok');
+        // $this->markTestSkipped('ok');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/holiday/all');
         $response->assertOk();
         $response->assertJsonIsArray();
@@ -98,6 +98,7 @@ class HolidayTests extends TestCase
     #[DataProvider('idProvider')]
     public function testGetPdf(int $id) : void
     {
+        // $this->markTestSkipped('ok');
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $this->token])->getJson('/api/holiday/pdf/' . $id);
         $response->assertOk();
         $response->assertDownload();

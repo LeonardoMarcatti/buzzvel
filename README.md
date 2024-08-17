@@ -98,7 +98,17 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <h3>Intro</h3>
 <p>One of the most importante features of this challenge is testing. Inside tests folder there are two types of test - unit test and feature test. Unit test are reponsable for testing small portions of applications and on the other hand feature test are responsable for testing how different parts of application interact with one another.</p>
 <p>You will find five files inside unit test folder. They are: AuthTest, HolidayTest, PariticpantsTest, ErrorTests and LogoutTest. Each one aim to evaluate a certein group of features they are related to. AuthTest must be the very first test you must run because in one of the assertions inside of it you will get an token that you must add to other assertions and this token is a random string compose of several characters and its langth varies.</p>
-<p>For some tests you will find Data Providers and they are for running the same test a few times for two reasons. First, to fulfill the data bank and for the use of other tests. Sencondly to make sure when running one test more than once we stress the system a little ensuring it is robust one.</p>
+<p>The test were designed with some dummy data to be used. If you dont want to used this dummy data you may provide your own but remember to make some changes in each test file.</p>
+ <p>For some tests you will find Data Providers (dummy data) and they are for running the same test a few times for two reasons. First, to fulfill the data bank and for the use of other tests. Sencondly to make sure when running one test more than once we stress the system a little ensuring it is robust one.</p>
+ <p>To run the tests you must open an terminal and enter the project root folder name buzzvel. Once there you type php artisan test --testsuite=unit tests/Unit/You_test_file.php</p>
+ <p>The order of files that must be:</p>
+ <ol>
+    <li>AuthTest</li> <small>Get the token</small>
+    <li>HolidayTest</li>
+    <li>ParticipantsTest</li>
+    <li>ErrorTest</li>
+    <li>LogoutTest</li>
+ </ol>
 
 <h3>Auth Tests</h3>
 <p>In this set of tests you will find tests ralated to authentication like login and logup In each one several assertions are made to make sure everything is correct.</p>
@@ -107,7 +117,6 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <h4>Login Test</h4>
 <p>The second test to run is very important as it provides the token you gonna need for others tests. The token will be displayed after the end of this test and you have to use it on other test sets like HolidayTest and PariticpantsTest. Here its e-mail and its password created in logup test will be used to evaluate the login feature.</p>
 <p>On HolidayTest and PariticpantsTest you will see a message written <b>'place token here'</b> where you must use the token provided earlier.</p>
-
 <h3>Holiday Tests</h3>
 <p>This is a set of test for creating, reading, deleting and updating holidays. For this test to run you must enter the token retrieved in Auth Tests - Login Test. This token is necessary in order to allow API connections since only log in and log up do not need token to work.</p>
 <h4>Create Holiday Test</h4>

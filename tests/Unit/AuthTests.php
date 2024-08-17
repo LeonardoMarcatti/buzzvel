@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 
-class AuthTests
+class _1AuthTests
  extends TestCase
 {
     public function testLogup() : void
@@ -25,15 +25,4 @@ class AuthTests
         $response->assertJson(['status' => true]);
         $response->dump();
     }
-
-    // #[Depends('testLogin')]
-    // public function testLogout(string $token) : void
-    // {
-    //     $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->get('/api/logout');
-    //     $response->assertOK();
-    //     $response->assertValid();
-    //     $response->assertJsonIsObject();
-    //     $response->assertJson(['status' => true, 'message' => 'You have loged out!']);
-    // }
-
 }
