@@ -7,7 +7,6 @@ use App\Http\Requests\AddParticipantsRequest;
 use App\Http\Requests\UpdateHolidayRequest;
 use App\Models\HolidayModel;
 use App\Models\HolidaysParticipantsModel;
-use App\Models\FullDataModel;
 use App\Models\ParticipantsModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class HolidayController extends Controller
 
     public function getAllHolidays() : array|object
     {
-        $holidays = FullDataModel::all();
+        $holidays = HolidayModel::all();
         foreach ($holidays as $key => $holiday) {
             $participantsArray = [];
             $participants = HolidaysParticipantsModel::where('id_holiday', $holiday->id)->get();
@@ -53,7 +52,7 @@ class HolidayController extends Controller
 
     public function getPDF(Request $request)
     {
-        $holiday = FullDataModel::find($request->id);
+        $holiday = HolidayModel::find($request->id);
         $participantsArray = [];
         $participants = HolidaysParticipantsModel::where('id_holiday', $request->id)->get();
         foreach ($participants as $key => $participant) {
