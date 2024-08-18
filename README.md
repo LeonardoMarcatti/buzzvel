@@ -2,6 +2,7 @@
 <h1>Introduction</h1>
 <p>The following instrictions provides explanations about how to use this API by describing how to setup everything that is necessary to use it. </p>
 <p>The building of this API is part of a Buzzvel challenge to find an candidate for joining its team.</p>
+<p>If you wish to use a Docker image of this project go to xxxx and download it. There you will find some instructions for it.</p>
 <p>Once you have cloned the project to your system you have to open an Terminal on the folder your project is located and run <b>composer install.</b> This will install the project as well as all depencencies it requires.</p>
 
 <h2>Setup Your System</h2>
@@ -19,6 +20,8 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <p>DB_DATABASE=buzzvel</p>
 <p>DB_USERNAME=username</p>
 <p>DB_PASSWORD=your password</p>
+
+<p>You have to proovide permissions to storage folder recursively so logs may be created. On Linux systems just type chmod -R ./storage on buzzvel root folder</p>
 
 <h2>Data Bank</h2>
 <h2>Intro</h2>
