@@ -2,7 +2,7 @@
 <h1>Introduction</h1>
 <p>The following instrictions provides explanations about how to use this API by describing how to setup everything that is necessary to use it. </p>
 <p>The building of this API is part of a Buzzvel challenge to find an candidate for joining its team.</p>
-<p>If you wish to use a Docker image of this project just type docker pull leonardomarcatti/buzzvel and download it. On DockerHub web site you will find some instructions for it. Basicaly all you have to do is build the container, go inside it and start Apache2 and MariaDB.</p>
+<p>If you wish to use a Docker image of this project just type docker pull leonardomarcatti/buzzvel and download it. On <a href="https://hub.docker.com/r/leonardomarcatti/buzzvel">DockerHub</a> web site you will find some instructions for it. Basicaly all you have to do is build the container, go inside it and start Apache2 and MariaDB.</p>
 <p>Once you have cloned the project to your system you have to open an Terminal on the folder your project is located and run <b>composer install.</b> This will install the project as well as all depencencies it requires.</p>
 
 <h2>Setup Your System</h2>
