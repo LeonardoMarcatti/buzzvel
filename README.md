@@ -2,7 +2,7 @@
 <h1>Introduction</h1>
 <p>The following instrictions provides explanations about how to use this API by describing how to setup everything that is necessary to use it. </p>
 <p>The building of this API is part of a Buzzvel challenge to find an candidate for joining its team.</p>
-<p>If you wish to use a Docker image of this project just type docker pull leonardomarcatti/buzzvel and download it. On DockerHub web site you will find some instructions for it.</p>
+<p>If you wish to use a Docker image of this project just type docker pull leonardomarcatti/buzzvel and download it. On DockerHub web site you will find some instructions for it. Basicaly all you have to do is build the container, go inside it and start Apache2 and MariaDB.</p>
 <p>Once you have cloned the project to your system you have to open an Terminal on the folder your project is located and run <b>composer install.</b> This will install the project as well as all depencencies it requires.</p>
 
 <h2>Setup Your System</h2>
@@ -10,6 +10,7 @@
 <p>It is necessary to make some ajustments on your .env and .env.testing files located inside the project folder. There you must setup some parameters in order this project to run smoothly.</p>
 <p>First of all, it is important to have an data bank user with permissions to manage buzzvel bank actions like, create, read, update and delete.</p>
 <p>In both .env and .env.testing files make the following changes:</p> 
+<p>Make a copy of .env.testing file to .env file and do some changes below.</p>
 APP_URL=ip_address/path_to_folder/buzzvel/public/
 <b><small>This is the only modification you do not need to make in .env.testing file</small></b>
 <p></p>
@@ -26,7 +27,7 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <h2>Data Bank</h2>
 <h2>Intro</h2>
 <p>The data bank was build with only three tables - holiday, participants and holidays_participants. The reason behind this is to allow more felxibiliy when it comes to creation of participants as well as holidays.</p>
-<p>In order to create the data bank it is necessary to entrer in the project folder and type <b>php artisan migrate</b></p>
+<p>In order to create the data bank it is necessary to entrer in the project folder and type <b>php artisan migrate:fresh.</b> If you do not have buzzvel data bank created this command will do it for you.</p>
 <h3>Holiday Table</h3>
 <p>It contains information about holidays. The most importante ones are: id, title, description, location, and date. All of them are string type except for td and date.</p>
 <h3>Participants Table</h3>
