@@ -22,7 +22,7 @@ APP_URL=ip_address/path_to_folder/buzzvel/public/
 <p>DB_USERNAME=username</p>
 <p>DB_PASSWORD=your password</p>
 
-<p>You have to proovide permissions to storage folder recursively so logs may be created. On Linux systems just type chmod -R ./storage on buzzvel root folder</p>
+<p>You have to proovide permissions to storage folder recursively so logs may be created. On Linux systems just type chmod -R 777 ./storage on buzzvel root folder</p>
 
 <h2>Data Bank</h2>
 <h2>Intro</h2>
